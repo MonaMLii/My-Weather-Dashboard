@@ -2,31 +2,26 @@
 var APIKey = 'dd152ac68476b1494bf25ba1730d6edf';
 var todayEl = $('#current-date');
 var cityNameEl = $("#city-input");
-var savedSearches 
+var savedSearches
 var ulEl = $('#ul-el');
-var futureWeather = $('future-weather-container');
+var futureWeather = $('#future-weather-container');
 var todaysDate = dayjs();
 //todayEl.text(todaysDate.format('dddd, MMMM D, YYYY'));
 
 
 var saveSearch = $('#search-history');
 
+var historyList = function(cityName) {
+    savedSearches = JSON.parse(localStorage.getItem("savedSearches")) || [];
 
-
-// var historyList = function() {
-//     savedSearches = JSON.parse(localStorage.getItem("savedSearches")) || [];
-
-//     for (var i = 0; i < savedSearches.length; i++) {
-//         var liTag = document.createElement('li');
-//         liTag.textContent = savedSearches[i].cityName;
-
-//         ulEl.appendChild(liTag);
-//     }
-// }
-// historyList();
-
-
-
+    for (var i = 0; i < savedSearches.length; i++) {
+        var liTag = document.createElement("li");
+        liTag.textContent = savedSearches[i].cityName;
+        $(ulEl).append(liTag);
+        $(liTag).append(cityName);
+    }
+}
+historyList();
 
 
 
@@ -40,19 +35,18 @@ var getCoordinates = function (cityName) {
             return response.json();
         })
         .then(function (data) {
+            var liTag = document.createElement("li");
 
-            // savedSearches.push(cityName)
-            // localStorage.setItem('savedSearches', JSON.stringify(savedSearches));
-
-            
-
+            savedSearches.push(cityName)
+            localStorage.setItem('savedSearches', JSON.stringify(savedSearches));
+            $(ulEl).append(liTag);
+            $(liTag).append(cityName)
 
             showCurrentWeathert(cityName, data);
             getFiveDays(data.coord.lat, data.coord.lon);
-
-
         })
 }
+
 
 // get data from lat n lon
 
@@ -106,7 +100,7 @@ var fiveDaysCards = function (forecastData) {
 
         weatherForecast += `
         <div class="future-card-body">
-        <p>Date: ${dayjs.unix(forecastData.daily[i].dt).format('dddd, MMMM D, YYYY')}</p>
+        <p>${dayjs.unix(forecastData.daily[i].dt).format('dddd, MMMM D, YYYY')}</p>
         <img src='${iconUrl+forecastData.daily[i].weather[0].icon+'.png'}'/>
         <p>Temp: ${forecastData.daily[i].temp.day}\u00B0F</p>
         <p>Humidity: ${forecastData.daily[i].humidity}%</p>
