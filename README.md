@@ -26,5 +26,11 @@ When user click on a city in the search history, they're again presented with cu
 
 https://monamlii.github.io/My-Weather-Dashboard/
 
+
+
 <img width="1609" alt="Screenshot 2023-02-07 at 10 54 21 PM" src="https://user-images.githubusercontent.com/89316044/217456474-5ebd80eb-bfbc-4a12-bc86-a96cff29e1bc.png">
+
+
+
+![Weather Dashboard](https://user-images.githubusercontent.com/89316044/217470742-001149fb-c279-4e70-92dc-be517d37aa36.gif)
 
