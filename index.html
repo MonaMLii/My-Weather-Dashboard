@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&family=Abel:wght@500&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./assets/CSS/style.css">
+    <title>Weather Dashboard</title>
+</head>
+
+<body>
+<!-- background from freefrontend.com -->
+    <div id="background-wrap">
+        <div class="x1">
+            <div class="cloud"></div>
+        </div>
+    
+        <div class="x2">
+            <div class="cloud"></div>
+        </div>
+    
+        <div class="x3">
+            <div class="cloud"></div>
+        </div>
+    
+        <div class="x4">
+            <div class="cloud"></div>
+        </div>
+    
+        <div class="x5">
+            <div class="cloud"></div>
+        </div>
+    </div>
+
+
+    <header>
+        <h1>My Weather Dashboard</h1>
+    </header>
+
+
+    <!-- search bar on the left -->
+    <div id="container" class="container">
+        <div class="row">
+            <div id="search-bar" class="search-bar col-4">
+                <label for="exampleDataList" id="city-search" class="form-label">Search for a city</label>
+                <br>
+                <input class="form-control" list="datalistOptions" id="city-input" placeholder="Type to search...">
+                <datalist id="datalistOptions">
+                    <option value="San Francisco">
+                    <option value="New York">
+                    <option value="Seattle">
+                    <option value="Los Angeles">
+                    <option value="Chicago">
+                </datalist>
+                <button id="search-btn" class="btn btn-primary btn-lg" tabindex="-1" role="button"
+                    aria-disabled="true">Go!</button>
+                <div id="search-history">
+                    <ul id="ul-el"></ul>
+                </div>
+            </div>
+            
+            <!-- right side container shows weather-->
+            <div id="weather-container" class="card col-8">
+                    
+            </div>
+
+            <div id="future-weather-container" class="future-weather-container">
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+        integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
+    <script>
+        $(function () {
+            $("#selectable").selectable();
+        });
+    </script>
+    <script src="./assets/JS/script.js"></script>
+</body>
+
+</html>
