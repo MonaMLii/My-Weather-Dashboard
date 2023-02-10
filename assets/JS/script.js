@@ -11,29 +11,43 @@ var todaysDate = dayjs();
 
 var saveSearch = $('#search-history');
 
-var historyList = function(cityName) {
+var historyList = function (cityName) {
     savedSearches = JSON.parse(localStorage.getItem("savedSearches")) || [];
 
     for (var i = 0; i < savedSearches.length; i++) {
-        var liTag = document.createElement("li");
-        var btnListTag = document.createElement("button");
-        btnListTag.textContent = savedSearches[i].cityName;
-        $(ulEl).append(liTag);
-        $(liTag).append(btnListTag);
-        $(btnListTag).append(cityName);
+
+        if (savedSearches[i].cityName) {
+            var liTag = document.createElement("li");
+            var btnListTag = document.createElement("button");
+
+            btnListTag.textContent = savedSearches[i].cityName;
+
+            $(ulEl).append(liTag);
+            $(liTag).append(btnListTag);
+            $(btnListTag).append(cityName);
+
+        }
     }
-        btnListTag.addEventListener('click', function(e) {   
-        getCoordinates(cityNameEl[0].value);
-
-        if (btnListTag = '') {
-            liTag.remove();
-        } 
-
-    } )
+    
 
 }
 historyList();
 
+$("#ul-el").on("click", "button", function(e) {
+    var buttonCityName = e.target.textContent;
+
+    getCoordinates(buttonCityName);
+
+})
+
+// btnListTag.addEventListener('click', function(e) {
+//     
+
+//     if (!btnListTag.textContent) {
+//         liTag.remove();
+//     }
+
+// })
 
 
 //add city to the url
@@ -71,7 +85,7 @@ var getFiveDays = function (lat, lon) {
         })
         .then(function (data) {
             fiveDaysCards(data);
-            
+
         })
 }
 
@@ -84,7 +98,7 @@ var showCurrentWeathert = function (cityName, data) {
     <div class="card-body">
         <h2 id="weather-now">current weather in <span>${cityName}</span></h2>
         <p>${todaysDate.format('dddd, MMMM D, YYYY')}</p>
-        <img src='${iconUrl+data.weather[0].icon+'.png'}'/>
+        <img src='${iconUrl + data.weather[0].icon + '.png'}'/>
         <p>Temp: ${data.main.temp}\u00B0F</p>
         <p>Humidity:${data.main.humidity}%</p>
         <p>Wind:${data.wind.speed} MPH</p>
@@ -114,14 +128,14 @@ var fiveDaysCards = function (forecastData) {
         weatherForecast += `
         <div class="future-card-body">
         <p>${dayjs.unix(forecastData.daily[i].dt).format('dddd, MMMM D, YYYY')}</p>
-        <img src='${iconUrl+forecastData.daily[i].weather[0].icon+'.png'}'/>
+        <img src='${iconUrl + forecastData.daily[i].weather[0].icon + '.png'}'/>
         <p>Temp: ${forecastData.daily[i].temp.day}\u00B0F</p>
         <p>Humidity: ${forecastData.daily[i].humidity}%</p>
         <p>Wind: ${forecastData.daily[i].wind_speed} MPH</p>
         <p>UV-Index: ${forecastData.daily[i].uvi}</p>
         </div>
         `
-    } 
+    }
     console.log(weatherForecast);
 
     $('#future-weather-container').html(weatherForecast);
