@@ -16,10 +16,21 @@ var historyList = function(cityName) {
 
     for (var i = 0; i < savedSearches.length; i++) {
         var liTag = document.createElement("li");
-        liTag.textContent = savedSearches[i].cityName;
+        var btnListTag = document.createElement("button");
+        btnListTag.textContent = savedSearches[i].cityName;
         $(ulEl).append(liTag);
-        $(liTag).append(cityName);
+        $(liTag).append(btnListTag);
+        $(btnListTag).append(cityName);
     }
+        btnListTag.addEventListener('click', function(e) {   
+        getCoordinates(cityNameEl[0].value);
+
+        if (btnListTag = '') {
+            liTag.remove();
+        } 
+
+    } )
+
 }
 historyList();
 
@@ -36,17 +47,19 @@ var getCoordinates = function (cityName) {
         })
         .then(function (data) {
             var liTag = document.createElement("li");
+            var btnListTag = document.createElement("button");
 
             savedSearches.push(cityName)
             localStorage.setItem('savedSearches', JSON.stringify(savedSearches));
             $(ulEl).append(liTag);
-            $(liTag).append(cityName)
+            $(liTag).append(btnListTag);
+            $(btnListTag).append(cityName);
 
             showCurrentWeathert(cityName, data);
             getFiveDays(data.coord.lat, data.coord.lon);
         })
 }
-
+historyList();
 
 // get data from lat n lon
 

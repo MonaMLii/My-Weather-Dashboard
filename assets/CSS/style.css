@@ -20,11 +20,25 @@ img {
     height: 90px;
 }
 
+ul {
+	list-style-type: none;
+
+}
+
 li {
 	font-family: 'Ubuntu', 'san serif';
 	font-size: 20px;
 	list-style: none;
 }
+
+button {
+	background-color: rgb(156, 238, 252);
+	color: black;
+	opacity: 70%;
+	border-radius: 5%;
+	border-style: none;
+}
+
 
 .search-bar {
     float: left;
